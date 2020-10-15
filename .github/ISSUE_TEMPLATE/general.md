@@ -16,4 +16,18 @@ assignees: RaenonX
 
 ------
 
+THE BELOW SHOULD BE DELETED BEFORE PUBLISHING
+
+# Templates
+
+### Image
+
+![](https://raw.githubusercontent.com/RaenonX/dragalia-posts/master/images/summon-tests/202010-Illya/Roll.gif) 
+
+### Video
+
+[![](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://youtu.be/VIDEO_ID)
+
+THE ABOVE SHOULD BE DELETED BEFORE PUBLISHING
+
 (正文)
