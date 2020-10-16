@@ -59,6 +59,7 @@ THE ABOVE SHOULD BE DELETED BEFORE PUBLISHING
 # 角色特性 <a href="#角色特性" id="角色特性">#</a>
 
 抗性 | 被動 1 | 被動 2
+:---: | :---: | :---:
 (Resist) | (Ability1) | (Ability2)
 
 ### 被動 1 補充說明 <a href="#被動1" id="被動1">#</a>
@@ -135,24 +136,24 @@ SP | SSP
 
 (Rotation)
 
-### 配裝
+## 配裝
 
-#### 共享技能
+### 共享技能
 
 (SS1)
 - (Description)
 
-#### 龍
+### 龍
 
 (Dragon1)
 - (Description)
 
-#### 護符
+### 護符
 
 (Print)
 - (Description)
 
-#### EX
+### EX
 
 (EX)
 - (Description)
