@@ -1,0 +1,38 @@
+name: Github Traffic Log
+
+on:
+  push:
+    branches: 
+      - master
+  schedule: 
+    - cron: "0 0 * * *"
+    
+jobs:
+  main:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: "master"
+        
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: "3.9.0"
+        
+    - name: Install Python dependencies
+      run: pip install -r requirements.txt
+    
+    - name: Generate traffic data
+      run: python traffic.py
+      env:
+        TRAFFIC_ACTION_TOKEN: ${{ secrets.TRAFFIC_ACTION_TOKEN }} 
+     
+    - name: Commit changes
+      uses: EndBug/add-and-commit@v4
+      with:
+        author_name: RaenonX
+        message: "AUTO - Github traffic report"
+        add: "./traffic/*"
+        ref: "master"
