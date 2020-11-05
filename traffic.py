@@ -42,7 +42,7 @@ class DataController(ABC):
         raise NotImplementedError()
 
     def export_to_csv(self, export_path: str):
-        with open(export_path, "w+", newline="", encoding="utf-8") as csv_file:
+        with open(export_path, "a+", newline="", encoding="utf-8") as csv_file:
             csv_writer = csv.writer(csv_file)
             csv_writer.writerow(self.CSV_HEADER_ENUM_CLASS.as_header())
             csv_writer.writerows(self.get_sorted_data_generator())
@@ -75,7 +75,7 @@ class TrafficViewData(DataController):
         if not data_path:
             return
 
-        with open(data_path, "w+", newline="", encoding="utf-8") as csv_file:
+        with open(data_path, newline="", encoding="utf-8") as csv_file:
             csv_reader = csv.reader(csv_file)
 
             for row in csv_reader:
@@ -112,7 +112,7 @@ class TopReferrerData(DataController):
         if not data_path:
             return
 
-        with open(data_path, "w+", newline="", encoding="utf-8") as csv_file:
+        with open(data_path, newline="", encoding="utf-8") as csv_file:
             csv_reader = csv.reader(csv_file)
 
             for row in csv_reader:
@@ -151,7 +151,7 @@ class TopPathData(DataController):
         if not data_path:
             return
 
-        with open(data_path, "w+", newline="", encoding="utf-8") as csv_file:
+        with open(data_path, newline="", encoding="utf-8") as csv_file:
             csv_reader = csv.reader(csv_file)
 
             for row in csv_reader:
