@@ -77,6 +77,8 @@ class TrafficViewData(DataController):
 
         with open(data_path, newline="", encoding="utf-8") as csv_file:
             csv_reader = csv.reader(csv_file)
+            
+            next(csv_reader)  # Dump header
 
             for row in csv_reader:
                 data_date = datetime.strptime(row[TrafficViewHeader.DATE], self.DATE_FORMAT)
@@ -114,6 +116,8 @@ class TopReferrerData(DataController):
 
         with open(data_path, newline="", encoding="utf-8") as csv_file:
             csv_reader = csv.reader(csv_file)
+            
+            next(csv_reader)  # Dump header
 
             for row in csv_reader:
                 data_date = datetime.strptime(row[TopReferrerHeader.DATE], self.DATE_FORMAT)
@@ -153,12 +157,14 @@ class TopPathData(DataController):
 
         with open(data_path, newline="", encoding="utf-8") as csv_file:
             csv_reader = csv.reader(csv_file)
+            
+            next(csv_reader)  # Dump header
 
             for row in csv_reader:
                 data_date = datetime.strptime(row[TopPathHeader.DATE], self.DATE_FORMAT)
                 data_count = int(row[TopPathHeader.COUNT])
                 data_path = row[TopPathHeader.PATH]
-                data_title = row[TopPathHeader.REFERRER]
+                data_title = row[TopPathHeader.TITLE]
                 data_visitors = int(row[TopPathHeader.UNIQUE_VISITORS])
 
                 self._data.append((data_date, data_count, data_path, data_title, data_visitors))
@@ -173,14 +179,14 @@ class ReportGenerator:
     def get_repo() -> Repository:
         # Check repo setup
         if "GITHUB_REPOSITORY" not in os.environ:
-            print("`GITHUB_REPOSITORY` not defined in the enviroment variables."
+            print("`GITHUB_REPOSITORY` not defined in the enviroment variables. "
                   "Make sure that the script is ran on Gihub Actions.")
             exit()
         gh_repo_name = os.environ["GITHUB_REPOSITORY"]
 
         # Initiate Github Instance
         if "TRAFFIC_ACTION_TOKEN" not in os.environ:
-            print("`TRAFFIC_ACTION_TOKEN` not defined in the enviroment variables."
+            print("`TRAFFIC_ACTION_TOKEN` not defined in the enviroment variables. "
                   "This is a Github personal access token with `repo` permissions.")
             exit()
         github = Github(os.environ["TRAFFIC_ACTION_TOKEN"])
@@ -192,7 +198,7 @@ class ReportGenerator:
     def get_workspace_path(sub_path: str) -> str:
         # Check repo setup
         if "GITHUB_WORKSPACE" not in os.environ:
-            print("`GITHUB_REPOSITORY` not defined in the enviroment variables."
+            print("`GITHUB_WORKSPACE` not defined in the enviroment variables. "
                   "Make sure that the script is ran on Gihub Actions.")
             exit()
         path_workspace = os.path.join(os.environ["GITHUB_WORKSPACE"], sub_path)
